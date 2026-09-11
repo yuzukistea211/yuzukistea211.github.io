@@ -9,36 +9,17 @@ body {
     font-family:Verdana;
     color: #333;
     padding:100px;
+    background-color: #eee;
 }
-.testClass{
-    background-color:orange;
-}
+
 </style>
 </head>
 
 
-
-
-
-<!--This is a default HTML sample.-->
-
-
-
-
-
 <body>
-<div class="testClass" onclick="clickMe()">
-You see a preview of the default HTML sample.
-<br>
-Click me to test the JavaScript functionality.
+<div class="main-body">
+hi
 </div>
-<script type="text/javascript">
-function clickMe()
-{
-var testClassDiv = document.getElementsByClassName("testClass")[0];
-var testText = testClassDiv.innerHTML;
-testClassDiv.innerHTML = testText.replace(/click me.+?functionality/i, "I was clicked, the JavaScript is working");
-}
-</script>
+
 </body>
 </html>
