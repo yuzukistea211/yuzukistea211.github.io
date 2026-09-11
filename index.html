@@ -1,25 +1,196 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<title>Test sample</title>
-<link rel="icon" href="/favicon.ico">
-<style>
-body {
-    font-family:Verdana;
-    color: #333;
-    padding:100px;
-    background-color: #eee;
-}
+<html lang="zh-TW">
 
-</style>
+<head>
+    <meta charset="utf-8">
+    <title>My web!</title>
+    <link rel="icon" href="/favicon.ico">
+    <style>
+        @import url("https://fontsapi.zeoseven.com/870/main/result.css");
+
+        body {
+            font-family: "PoxiaoPixel";
+            font-weight: normal;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #eee;
+        }
+
+        .main-body {
+            background-color: white;
+            padding: 10px;
+            height: 500px;
+            margin: 15px 0 0 0;
+            width: 600px;
+            min-width: 600px;
+            max-width: 600px;
+            min-height: 500px;
+            max-height: 500px;
+        }
+
+
+        .container {
+            display: grid;
+            column-gap: 10px;
+            grid-template-columns: auto auto auto;
+            padding: 10px;
+            margin: auto;
+            height: 96%;
+        }
+
+        .container div {
+            background-color: #f1f1f1;
+            height: auto;
+        }
+
+        /* Container scrollbar dimensions */
+        ::-webkit-scrollbar {
+            width: 17px;
+            height: 17px;
+        }
+
+        /* Background track */
+        ::-webkit-scrollbar-track {
+            background-color: #f0f0f0;
+            border-left: 1px solid #d9d9d9;
+            box-shadow: inset 1px 0 0 #fff;
+        }
+
+        /* Scrollbar Thumb (The moving handle) */
+        ::-webkit-scrollbar-thumb {
+            background-color: #cdcdcd;
+            border: 1px solid #a6a6a6;
+            /* Bevel gradient & highlights */
+            background-image: linear-gradient(to right,
+                    #ffffff 0%,
+                    #e5e5e5 40%,
+                    #cccccc 100%);
+            box-shadow:
+                inset 1px 1px 0px #ffffff,
+                inset -1px -1px 0px #b5b5b5;
+        }
+
+        /* Thumb Hover & Active states */
+        ::-webkit-scrollbar-thumb:hover {
+            background-image: linear-gradient(to right,
+                    #ffffff 0%,
+                    #e0eff8 40%,
+                    #b8d6ed 100%);
+            border-color: #3c7fb1;
+        }
+
+        ::-webkit-scrollbar-thumb:active {
+            background-image: linear-gradient(to right,
+                    #9bc3e3 0%,
+                    #73a7d2 100%);
+            border-color: #2c628b;
+        }
+
+        ::-webkit-scrollbar-button:hover {
+            background-color: #bee6fd;
+            border-color: #3c7fb1;
+        }
+
+        ::-webkit-scrollbar-button:active {
+            background-color: #98d1f5;
+            border-color: #2c628b;
+            box-shadow: inset 1px 1px 1px rgba(0, 0, 0, 0.4);
+        }
+
+
+
+        /* Corner junction */
+        ::-webkit-scrollbar-corner {
+            background-color: #f0f0f0;
+        }
+
+        .shortcut-div {
+            background: grey !important;
+            width: auto;
+            height: 100px;
+            margin: 5px;
+            border: black 1px none;
+            position: relative;
+        }
+
+        .shortcut-div .header {
+            background-color: white;
+            text-align: center;
+            width: 90%;
+            margin: auto;
+
+        }
+
+        .shortcut-div ul {
+            list-style: none;
+            padding: 5px;
+            margin: 0;
+        }
+
+        .shortcut-div li:hover {
+
+            background: #fff;
+            transform: translateY(-1px);
+        }
+
+
+
+        .social-div {
+            background-color: blue;
+            font-size: 10px;
+            text-align: center;
+            height: 100px;
+        }
+    </style>
+
 </head>
 
-
 <body>
-<div class="main-body">
-hi
-</div>
+    <div class="main-body">
+
+        <div class="container">
+            <div style="width:150px">1</div>
+
+            <div style="width:250px">
+
+            </div>
+
+
+            <div style="width:150px">
+
+                <div class="shortcut-div">
+                    <span class="header">Shortcut ↓</span>
+                    <ul>
+                        <li><a href="https://yuzukistea211.github.io/virtual-pinboard">Pinboard</a></li>
+                        <li><a href="https://yuzukistea211.github.io/virtual-pinboard">other stuff</a></li>
+                        <li><a href="https://yuzukistea211.github.io/virtual-pinboard">other stuff</a></li>
+                        <li><a href="https://yuzukistea211.github.io/virtual-pinboard">other stuff</a></li>
+                        <li><a href="https://yuzukistea211.github.io/virtual-pinboard">other stuff</a></li>
+                        <li><a href="https://yuzukistea211.github.io/virtual-pinboard">other stuff</a></li>
+                        <li><a href="https://yuzukistea211.github.io/virtual-pinboard">other stuff</a></li>
+                        <li><a href="https://yuzukistea211.github.io/virtual-pinboard">other stuff</a></li>
+                        <li><a href="https://github.com/yuzukistea211">back to my github</a></li>
+                    </ul>
+                    <div class="social-div">
+                        <a href="https://instagram.com">Instagram</a> ·
+                        <a href="https://twitter.com">Twitter</a> ·
+                        <a href="https://linkedin.com">LinkedIn</a>
+                    </div>
+                </div>
+
+
+
+
+
+
+
+
+            </div>
+        </div>
+    </div>
 
 </body>
+
 </html>
