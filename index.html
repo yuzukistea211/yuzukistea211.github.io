@@ -1,197 +1,355 @@
 <!DOCTYPE html>
-<html lang="zh-TW">
+<html lang="zh">
 
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <title>My web!</title>
     <link rel="icon" href="decals/icon.png">
+
     <style>
-        @import url("https://fontsapi.zeoseven.com/870/main/result.css");
+        @import url("https://fontsapi.zeoseven.com/896/main/result.css");
+
+        :root {
+            --label-text: #f5f5f7;
+            --shadow: rgba(0, 0, 0, 0.6);
+            --icon-color: #ffffff;
+            --cursor: white;
+            --select-bg: rgba(255, 255, 255, 0.16);
+            --toolbar-bg: rgba(255,255,255, 0.05);
+            --toolbar-border: rgba(255, 255, 255, 0.15);
+            box-sizing: border-box;
+            padding-top: env(safe-area-inset-top, 0px);
+            padding-bottom: env(safe-area-inset-bottom, 0px);
+        }
+
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
 
         body {
-            font-family: "PoxiaoPixel";
-            font-weight: normal;
-            color: #333;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: #eee;
-            background-image: url("decals/bg.png");
-              background-size: cover;       /* Resizes the image to cover the whole container */
-  background-position: center;  /* Centers the image */
-        }
-
-        .main-body {
-            background-color: white;
-            padding: 10px;
-            height: 500px;
-            margin: 15px 0 0 0;
-            width: 600px;
-            min-width: 600px;
-            max-width: 600px;
-            min-height: 500px;
-            max-height: 500px;
-        }
-
-
-        .container {
-            display: grid;
-            column-gap: 10px;
-            grid-template-columns: auto auto auto;
-            padding: 10px;
-            margin: auto;
-            height: 96%;
-        }
-
-        .container div {
-            background-color: #f1f1f1;
-            height: auto;
-        }
-
-        /* Container scrollbar dimensions */
-        ::-webkit-scrollbar {
-            width: 17px;
-            height: 17px;
-        }
-
-        /* Background track */
-        ::-webkit-scrollbar-track {
-            background-color: #f0f0f0;
-            border-left: 1px solid #d9d9d9;
-            box-shadow: inset 1px 0 0 #fff;
-        }
-
-        /* Scrollbar Thumb (The moving handle) */
-        ::-webkit-scrollbar-thumb {
-            background-color: #cdcdcd;
-            border: 1px solid #a6a6a6;
-            /* Bevel gradient & highlights */
-            background-image: linear-gradient(to right,
-                    #ffffff 0%,
-                    #e5e5e5 40%,
-                    #cccccc 100%);
-            box-shadow:
-                inset 1px 1px 0px #ffffff,
-                inset -1px -1px 0px #b5b5b5;
-        }
-
-        /* Thumb Hover & Active states */
-        ::-webkit-scrollbar-thumb:hover {
-            background-image: linear-gradient(to right,
-                    #ffffff 0%,
-                    #e0eff8 40%,
-                    #b8d6ed 100%);
-            border-color: #3c7fb1;
-        }
-
-        ::-webkit-scrollbar-thumb:active {
-            background-image: linear-gradient(to right,
-                    #9bc3e3 0%,
-                    #73a7d2 100%);
-            border-color: #2c628b;
-        }
-
-        ::-webkit-scrollbar-button:hover {
-            background-color: #bee6fd;
-            border-color: #3c7fb1;
-        }
-
-        ::-webkit-scrollbar-button:active {
-            background-color: #98d1f5;
-            border-color: #2c628b;
-            box-shadow: inset 1px 1px 1px rgba(0, 0, 0, 0.4);
-        }
-
-
-
-        /* Corner junction */
-        ::-webkit-scrollbar-corner {
-            background-color: #f0f0f0;
-        }
-
-        .shortcut-div {
-            background: grey !important;
-            width: auto;
-            height: 100px;
-            margin: 5px;
-            border: black 1px none;
-            position: relative;
-        }
-
-        .shortcut-div .header {
-            background-color: white;
-            text-align: center;
-            width: 90%;
-            margin: auto;
-
-        }
-
-        .shortcut-div ul {
-            list-style: none;
-            padding: 5px;
             margin: 0;
+            height: 100%;
+            font-family: "ProperScript";
+            background-image: url("decals/bg.png");
+            background-size: cover;
+            min-height: 100vh;
+            padding: 4px;
+            overflow: hidden;
         }
 
-        .shortcut-div li:hover {
-
-            background: #fff;
-            transform: translateY(-1px);
+        /* Desktop area */
+        .desktop {
+            display: grid;
+            grid-template-rows: repeat(auto-fill, 76px);
+            grid-auto-columns: 76px;
+            grid-auto-flow: column;
+            gap: 4px;
+            justify-content: start;
+            align-content: start;
+            width: 100%;
+            height: calc(100vh - 100px);
+            padding-bottom: 12px;
         }
 
+        /* Smaller desktop icons */
+        .icon {
+            width: 72px;
+            height: 72px;
 
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
 
-        .social-div {
-            background-color: blue;
-            font-size: 10px;
+            padding-top: 6px;
+            gap: 4px;
+
+            cursor: default;
+            user-select: none;
+        }
+
+        .icon:hover {
+            background: rgba(255, 255, 255, 0.06);
+        }
+
+        .icon.selected {
+            background: var(--select-bg);
+        }
+
+        .icon .glyph {
+            width: 34px;
+            height: 34px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .icon svg {
+            width: 30px;
+            height: 30px;
+
+            stroke: var(--icon-color);
+            fill: none;
+            stroke-width: 1.6;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+
+            filter: drop-shadow(0 1px 1px var(--shadow));
+        }
+
+        .icon .label {
+            font-size: 14px;
+            color: var(--label-text);
             text-align: center;
-            height: 100px;
+            line-height: 1.25;
+
+            max-width: 68px;
+
+            text-shadow: 0 1px 2px var(--shadow);
+            word-break: break-word;
+        }
+
+        .icon.selected .label {
+            background: rgba(60, 110, 220, 0.75);
+            padding: 0 3px;
+        }
+
+        /* Bottom toolbar */
+        .toolbar {
+            position: fixed;
+            left: 50%;
+            bottom: 5px;
+
+            height: 50px;
+            width: 230px;
+            transform: translate(-50%,0);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+
+            padding: 7px 10px;
+
+            background: var(--toolbar-bg);
+            border: 1px solid var(--toolbar-border);
+
+
+            backdrop-filter: blur(1px);
+            -webkit-backdrop-filter: blur(1px);
+
+
+            z-index: 100;
+        }
+
+        .toolbar-button {
+            width: 42px;
+            height: 42px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border: 0;
+
+            background: transparent;
+            color: white;
+
+            cursor: pointer;
+
+            transition:
+                background 0.15s ease,
+                transform 0.15s ease;
+        }
+
+        .toolbar-button:hover {
+            background: rgba(255, 255, 255, 0.12);
+            transform: translateY(-2px);
+        }
+
+        .toolbar-button:active {
+            transform: translateY(0);
+        }
+
+        .toolbar-button svg {
+            width: 22px;
+            height: 22px;
+
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 1.7;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .toolbar-divider {
+            width: 1px;
+            height: 28px;
+            background: rgba(255, 255, 255, 0.16);
+            margin: 0 2px;
+        }
+
+        #typing-container {
+            position: absolute;
+            right: 10px;
+            top: 0px;
+            font-size: 15px;
+            color: white;
+            white-space: pre-wrap;
+            word-break: break-word;
+            max-width: 400px;
+            line-height: 1.4;
+            text-align: right;
+            font-family:Arial;
+        }
+
+        #cursor {
+            display: inline-block;
+            width: 2px;
+            height: 1em;
+            vertical-align: text-bottom;
+            background: var(--cursor);
+            margin-left: 2px;
+            animation: blink 0.8s steps(1) infinite;
+        }
+
+        @keyframes blink {
+            50% {
+                opacity: 0;
+            }
         }
     </style>
-
 </head>
 
 <body>
-    <div class="main-body">
 
-        <div class="container">
-            <div style="width:150px">1</div>
-
-            <div style="width:250px">
-
-            </div>
-
-
-            <div style="width:150px">
-
-                <div class="shortcut-div">
-                    <span class="header">Shortcut ↓</span>
-                    <ul>
-                        <li><a href="https://yuzukistea211.github.io/virtual-pinboard">Pinboard</a></li>
-                        <li><a href="https://yuzukistea211.github.io/font-effect-generator/">Font Effect Generator</a></li>
-                        <li><a href="https://yuzukistea211.github.io/virtual-pinboard">other stuff</a></li>
-                        <li><a href="https://yuzukistea211.github.io/virtual-pinboard">other stuff</a></li>
-                        <li><a href="https://yuzukistea211.github.io/virtual-pinboard">other stuff</a></li>
-                        <li><a href="https://yuzukistea211.github.io/virtual-pinboard">other stuff</a></li>
-                        <li><a href="https://yuzukistea211.github.io/virtual-pinboard">other stuff</a></li>
-                        <li><a href="https://yuzukistea211.github.io/virtual-pinboard">other stuff</a></li>
-                        <li><a href="https://github.com/yuzukistea211">back to my github</a></li>
-                    </ul>
-                    <div class="social-div">
-                        <a href="https://instagram.com">Instagram</a> ·
-                        <a href="https://twitter.com">N/A</a> ·
-                    </div>
-                </div>
-
-
-
-
-
-
-
-
-            </div>
-        </div>
+    <div class="desktop" id="desktop"></div>
+    <div id="typing-container">
+        <span id="typing-text"></span><span id="cursor">&nbsp;</span>
     </div>
+    <!-- Bottom toolbar -->
+    <div class="toolbar">
+
+        <button class="toolbar-button" title="卯咪">
+            <svg viewBox="0 0 20 20">
+
+                <path d="M0 10.2H2.5M0 12.7l2.5-1.2m15-1.3H20m-2.5 1.3L20 12.7M3.7 11.5c0-1.3 0-5 1.3-5 2.5 0 2.5 2.5 2.5 5 0 1.2-2.5 5-3.8 0m12.5 0c0-1.3 0-5-1.2-5-2.5 0-2.5 2.5-2.5 5 0 1.2 2.5 5 3.7 0M8.7 12.7A1.2 1.2 90 0010 11.5a1.2 1.2 90 001.2 1.2" />
+            </svg>
+        </button>
+
+        <button class="toolbar-button" title="卯咪">
+            <svg viewBox="0 0 20 20">
+
+                <path d="M0 10.2H2.5M0 12.7l2.5-1.2m15-1.3H20m-2.5 1.3L20 12.7M3.7 11.5c0-1.3.3-4.5 1.3-5 3 2.5 2.5 2.5 2.5 5 0 1.2-2.5 5-3.8 0m12.5 0c0-1.3-.2-4.5-1.2-5-3 2.5-2.5 2.5-2.5 5 0 1.2 2.5 5 3.7 0M8.7 12.7A1.2 1.2 90 0010 11.5a1.2 1.2 90 001 .5" />
+            </svg>
+        </button>
+
+        <div class="toolbar-divider"></div>
+
+        <button class="toolbar-button" title="卯咪">
+            <svg viewBox="0 0 20 20">
+                <path d="M0 10.2H2.5M0 12.7l2.5-1.2m15-1.3H20m-2.5 1.3L20 12.7M3.7 11.5c0-1.3 0-4 1.3-5 2-1.5 2.5 2.5 2.5 5 0 1.2-1.5 4.5-3.8 0m12.5 0c0-1.3 0-4-1.2-5-2-1.5-2.5 2.5-2.5 5 0 1.2 1.5 4.5 3.7 0M9 13A1.2 1.2 90 0010 11.5a1.2 1.2 90 001.2 1.2" />
+            </svg>
+        </button>
+
+    </div>
+
+    <script>
+        const items = [{
+            label: "首頁",
+            icon: `<path d="M3 11l9-8 9 8 M5 10v10h14V10 M9 20v-6h6v6"/>`,
+            link: "https://github.com/yuzukistea211"
+        },
+        {
+            label: "備忘錄",
+            icon: `<path d="M3 3 21 3V7H7M3 7V20H21V10"/>`,
+            link: "https://yuzukistea211.github.io/virtual-pinboard/"
+        }
+        ];
+
+        const desktop = document.getElementById("desktop");
+
+        items.forEach(item => {
+            const el = document.createElement("div");
+            el.className = "icon";
+
+            el.innerHTML = `
+      <div class="glyph">
+        <svg viewBox="0 0 24 24">${item.icon}</svg>
+      </div>
+      <div class="label">${item.label}</div>
+    `;
+
+            el.addEventListener("click", (e) => {
+                document
+                    .querySelectorAll(".icon.selected")
+                    .forEach(n => {
+                        if (n !== el) n.classList.remove("selected");
+                    });
+
+                el.classList.toggle("selected");
+                e.stopPropagation();
+            });
+            el.addEventListener('dblclick', (e) => {
+                location.href = item.link;
+            });
+
+            desktop.appendChild(el);
+
+        });
+
+        document.body.addEventListener("click", () => {
+            document
+                .querySelectorAll(".icon.selected")
+                .forEach(n => n.classList.remove("selected"));
+        });
+        
+          const phrases = [
+    "Hello, world! This is a typing effect that wraps across multiple lines automatically.",
+    "You can also force a line break manually,\nlike this second line.",
+    "Keep building — long sentences will naturally flow onto the next line as they type.",
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+  ];
+
+  const el = document.getElementById('typing-text');
+  let phraseIndex = 0;
+  let charIndex = 0;
+  let deleting = false;
+
+  const TYPE_SPEED = 80;
+  const DELETE_SPEED = 40;
+  const PAUSE_AFTER_TYPE = 1200;
+  const PAUSE_AFTER_DELETE = 300;
+
+  function tick() {
+    const current = phrases[phraseIndex];
+
+    if (!deleting) {
+      charIndex++;
+      el.textContent = current.slice(0, charIndex);
+      if (charIndex === current.length) {
+        deleting = true;
+        setTimeout(tick, PAUSE_AFTER_TYPE);
+        return;
+      }
+      setTimeout(tick, TYPE_SPEED);
+    } else {
+      charIndex--;
+      el.textContent = current.slice(0, charIndex);
+      if (charIndex === 0) {
+        deleting = false;
+        phraseIndex = (phraseIndex + 1) % phrases.length;
+        setTimeout(tick, PAUSE_AFTER_DELETE);
+        return;
+      }
+      setTimeout(tick, DELETE_SPEED);
+    }
+  }
+
+  tick();
+    </script>
 
 </body>
 
